@@ -1,0 +1,124 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    padding: 20px;
+  }
+  
+  .auth-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 450px;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .auth-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+  }
+  
+  .toggle-buttons {
+    display: flex;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #f5f5f5;
+  }
+  
+  .toggle-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    transition: all 0.3s;
+  }
+  
+  .toggle-btn.active {
+    background: #6e8efb;
+    color: white;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s;
+  }
+  
+  .form-group input:focus {
+    border-color: #6e8efb;
+    outline: none;
+  }
+  
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    margin: 25px 0;
+  }
+  
+  .checkbox-group input {
+    width: auto;
+    margin-right: 10px;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+  }
+  
+  .register-link {
+    margin-left: 5px;
+    color: #6e8efb;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .register-link:hover {
+    text-decoration: underline;
+  }
