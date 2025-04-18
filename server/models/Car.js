@@ -7,7 +7,7 @@ const CarSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: Number,
+      type: Number, // только в рублях
       required: true,
     },
     brand: {

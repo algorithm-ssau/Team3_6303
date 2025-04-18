@@ -15,13 +15,13 @@ const UserSchema = new mongoose.Schema(
             required: true, // Обязательная или нет
             unique: true // Уникальная или нет
         },
-        passwordHash: { // Хеш нашего пароля, кабы хранить сам пароль небезопасно
+        passwordHash: {
             type: String,
             required: true
         },
         nickname: {
             type: String,
-            unique: true, // Лучше это поменять нахуй
+            unique: true,
         },
         gender: {
             type: Boolean
@@ -35,4 +35,4 @@ const UserSchema = new mongoose.Schema(
     },
 );
 
-export default mongoose.model('User', UserSchema); // Экспортируем модельку для БД
+export default mongoose.model('User', UserSchema); // Экспорт модельки для БД
