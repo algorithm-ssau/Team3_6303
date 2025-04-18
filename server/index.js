@@ -16,16 +16,16 @@ dotenv.config(); // Определяем наш .env
 // Подключаемся к созданной нами базе данных MongoDB
 mongoose
   .connect(
-    process.env.DB_LINK // Берем переменную из .env
+    process.env.DB_LINK
   )
-  .then(() => console.log("DB ok")) // Если мы не словили инсульт, то выводим это
-  .catch((err) => console.log("DB error", err)); // Если словили инсульт...
+  .then(() => console.log("DB ok"))
+  .catch((err) => console.log("DB error", err));
 
-const app = express(); // Создаём express приложение
+const app = express();
 
-app.use(express.json()); // Позволяет читать JSON которые нам приходят с клиента
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
-app.use(cors()); // Настраиваем CORS
+app.use(cors());
 
 app.use('/registration', RegisterRoutes);
 

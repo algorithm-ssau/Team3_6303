@@ -21,7 +21,6 @@ const Register = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Register</h2>
-      <div>Сосать суки</div>
       <input name="email" placeholder="Email" onChange={handleChange} required />
       <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
       <button type="submit">Register</button>
