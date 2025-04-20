@@ -8,7 +8,6 @@ import { registerValidation } from '../validations/reg.js';
 const router = express.Router();
 
 router.post('/register', registerValidation, async (req, res) => {
-  // 1. Валидация данных
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -17,7 +16,6 @@ router.post('/register', registerValidation, async (req, res) => {
   const { nickname, email, phone_number, password } = req.body;
 
   try {
-    // 2. Проверка на существующего пользователя
     const existingUserByMail = await UserModel.findOne( { email } );
     if (existingUserByMail) {
       return res.status(400).json({
@@ -31,11 +29,9 @@ router.post('/register', registerValidation, async (req, res) => {
       });
     }
 
-    // 3. Хеширование пароля
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
 
-    // 4. Создание нового пользователя
     const newUser = new UserModel({
       nickname,
       email,
@@ -44,17 +40,15 @@ router.post('/register', registerValidation, async (req, res) => {
       type: false, // стандартный тип пользователя
     });
 
-    // 5. Сохранение пользователя в БД
     await newUser.save();
 
-    // 6. Генерация JWT токена
+    // Генерация JWT токена
     // const token = jwt.sign(
     //   { userId: newUser._id },
     //   process.env.JWT_SECRET,
     //   { expiresIn: '24h' } // токен на 24 часа
     // );
 
-    // 7. Успешный ответ
     res.status(201).json({
       // token,
       user: {

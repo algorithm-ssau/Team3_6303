@@ -1,11 +1,12 @@
-import express from "express"; // Библиотека для запуска веб-сервера на твоей машине
-import mongoose from "mongoose"; // Библиотека для подключения к БД
-import dotenv from "dotenv"; // .env
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 import { fileURLToPath } from 'url';
-import cors from 'cors'; // CORS
+import cors from 'cors';
 import path from 'path';
 
 import RegisterRoutes from './routes/register.js';
+
 const PORT = process.env.PORT || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
