@@ -1,31 +1,43 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/AuthForm.css';
 
 const RegForm = () => {
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [nickname, setName] = useState('');
+  const [phone_number, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (password !== confirmPassword) {
       alert('Пароли не совпадают!');
       return;
     }
-
-    if (password.length < 7) {
-      alert('Пароль должен состоять хотя бы из 8 символов!');
-      return;
-    }
     
-    const formData = { name, email, phone, password };
-    console.log('Данные регистрации:', formData);
-    alert('Регистрация успешна!');
-    // Здесь будет логика регистрации
+    try {
+      const response = await axios.post('http://localhost:4000/reg/register', {
+        nickname, email, phone_number, password
+      });
+      
+      localStorage.setItem('token', response.data.token);
+      alert(response.data.message);
+      window.location.href = '/';
+      
+    } catch (error) {
+      if (error.response?.data?.errors) {
+        // Обработка ошибок валидации
+        const errorMessages = error.response.data.errors.map(err => err.msg).join('\n');
+        console.error('Ошибка валидации:', error.response?.data);
+        alert(errorMessages);
+      } else {
+        alert(error.response?.data?.message || 'Ошибка регистрации');
+        console.error('Ошибка:', error.response?.data);
+      }
+    }
   };
 
   return (
@@ -35,11 +47,11 @@ const RegForm = () => {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Имя</label>
+            <label>Имя пользователя</label>
             <input
               type="text"
               placeholder="Ваше имя"
-              value={name}
+              value={nickname}
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -61,7 +73,7 @@ const RegForm = () => {
             <input
               type="tel"
               placeholder="+7 (___) ___-__-__"
-              value={phone}
+              value={phone_number}
               onChange={(e) => setPhone(e.target.value)}
               required
             />

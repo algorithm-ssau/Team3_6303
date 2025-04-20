@@ -8,7 +8,9 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         phone_number: {
-            type: String
+            type: String,
+            required: true, 
+            unique: true 
         },
         email: {
             type: String, // Тип данных 
@@ -20,8 +22,7 @@ const UserSchema = new mongoose.Schema(
             required: true
         },
         nickname: {
-            type: String,
-            unique: true,
+            type: String
         },
         gender: {
             type: Boolean
