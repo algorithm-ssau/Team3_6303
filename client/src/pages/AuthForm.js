@@ -77,7 +77,7 @@ const AuthForm = () => {
 
         <div className="auth-footer">
           <span>Ещё нет аккаунта?</span>
-          <Link to="/register" className="register-link">
+          <Link to="/reg" className="register-link">
             Зарегистрироваться
           </Link>
         </div>
