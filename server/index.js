@@ -6,6 +6,7 @@ import cors from 'cors'; // CORS
 import path from 'path';
 
 import RegisterRoutes from './routes/registration.js';
+import CarCardRoutes from './routes/carCard.js';
 const PORT = process.env.PORT || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(cors()); // Настраиваем CORS
 
 app.use('/registration', RegisterRoutes);
+app.use('/carCard', CarCardRoutes)
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
@@ -41,6 +43,11 @@ app.get("/reg", (req, res) => {
 
 // Запрос на страницу авторизации
 app.get("/auth", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
+
+// Запрос на карточку машины
+app.get("/carCard", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
 
