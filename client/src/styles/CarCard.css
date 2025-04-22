@@ -97,6 +97,18 @@
   .favorite-btn:hover {
     background: #f5f5f5;
   }
+
+  .favorite-btn:hover path {
+    fill: #FFD700;
+    stroke: #FFD700;
+    transition: all 0.3s ease;
+  }
+  
+  .favorite-btn.active path {
+    fill: #FF0000;
+    stroke: #FF0000;
+  }
+  
   
   .contact-btn,
   .buy-btn {
