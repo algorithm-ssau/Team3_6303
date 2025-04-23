@@ -1,11 +1,12 @@
-import express from "express"; // Библиотека для запуска веб-сервера на твоей машине
-import mongoose from "mongoose"; // Библиотека для подключения к БД
-import dotenv from "dotenv"; // .env
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 import { fileURLToPath } from 'url';
-import cors from 'cors'; // CORS
+import cors from 'cors';
 import path from 'path';
 
-import RegisterRoutes from './routes/registration.js';
+import RegisterRoutes from './routes/register.js';
+
 const PORT = process.env.PORT || 4000;
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,18 +17,18 @@ dotenv.config(); // Определяем наш .env
 // Подключаемся к созданной нами базе данных MongoDB
 mongoose
   .connect(
-    process.env.DB_LINK // Берем переменную из .env
+    process.env.DB_LINK
   )
-  .then(() => console.log("DB ok")) // Если мы не словили инсульт, то выводим это
-  .catch((err) => console.log("DB error", err)); // Если словили инсульт...
+  .then(() => console.log("DB ok"))
+  .catch((err) => console.log("DB error", err));
 
-const app = express(); // Создаём express приложение
+const app = express();
 
-app.use(express.json()); // Позволяет читать JSON которые нам приходят с клиента
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
-app.use(cors()); // Настраиваем CORS
+app.use(cors());
 
-app.use('/registration', RegisterRoutes);
+app.use('/reg', RegisterRoutes);
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
