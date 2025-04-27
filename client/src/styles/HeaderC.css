@@ -1,0 +1,118 @@
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Стили навигационного меню */
+.navbar {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to right, #6e8efb, #a777e3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.site-title-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.wheel-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: white;
+    border-radius: 50%;
+    color: #6e8efb;
+    font-size: 18px;
+}
+
+.site-title {
+    color: white;
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-link:hover {
+    color: black !important;
+    text-decoration: underline;
+}
+
+.nav-link.active {
+    color: black;
+    font-weight: 600;
+}
+
+/* .heart-icon {
+    color: #000000;
+} */
+
+.user-icon {
+    margin-left: 5px;
+}
+
+/* Стили основного содержимого */
+.page-content {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+/* Адаптивность  */
+@media (max-width: 768px) {
+    .navbar-content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .nav-links {
+        margin-top: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .site-title {
+        margin-bottom: 0.5rem;
+    }
+}
+
