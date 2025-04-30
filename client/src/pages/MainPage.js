@@ -1,31 +1,36 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+  const navigate = useNavigate();
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/`, form);
-      localStorage.setItem('token', res.data.token);
-      alert('Registration successful!');
-    } catch (err) {
-      alert('Registration failed.');
-      console.error(err.response?.data || err.message);
-    }
+  const handleRegisterClick = () => {
+    navigate('/reg');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>MainPage</h2>
-      <input name="name" placeholder="Name" onChange={handleChange} required />
-      <input name="email" placeholder="Email" onChange={handleChange} required />
-      <input name="password" type="password" placeholder="Password" onChange={handleChange} required />
-      <button type="submit">MainPage</button>
-    </form>
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh' 
+    }}>
+      <button 
+        onClick={handleRegisterClick}
+        style={{
+          padding: '10px 20px',
+          fontSize: '16px',
+          backgroundColor: '#4CAF50',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}
+      >
+        Зарегистрироваться
+      </button>
+    </div>
   );
 };
 
