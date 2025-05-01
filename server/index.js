@@ -1,49 +1,47 @@
-import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import { fileURLToPath } from 'url';
-import cors from 'cors';
-import path from 'path';
+// index.js
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';                  // ⬅ если не используете CORS, можно убрать
+import registerRouter from './routes/register.js';
+import carsRouter    from './routes/cars.js';   // ⬅ новый роутер
 
-import RegisterRoutes from './routes/register.js';
-
-const PORT = process.env.PORT || 4000;
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-dotenv.config(); // Определяем наш .env
-
-// Подключаемся к созданной нами базе данных MongoDB
-mongoose
-  .connect(
-    process.env.DB_LINK
-  )
-  .then(() => console.log("DB ok"))
-  .catch((err) => console.log("DB error", err));
-
+// Создаём экземпляр приложения
 const app = express();
 
+// ── MIDDLEWARES ──────────────────────────────────
+
+// Преобразование JSON-тела
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+// Разрешить CORS (при необходимости)
 app.use(cors());
 
-app.use('/reg', RegisterRoutes);
+// ── РОУТЕРЫ ──────────────────────────────────────
 
-// Дефолт запрос на основную страницу
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+// Существующий роутер регистрации
+app.use('/api/register', registerRouter);
+
+// Новый роутер для списка и фильтрации машин
+app.use('/api/cars', carsRouter);
+
+// ── ПОДКЛЮЧЕНИЕ К БАЗЕ ДАННЫХ ────────────────────
+
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/yourdbname';
+
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log('✅ MongoDB connected');
+})
+.catch(err => {
+  console.error('❌ MongoDB connection error:', err);
 });
 
-// Запрос на страницу регистрации
-app.get("/reg", (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
-});
+// ── ЗАПУСК СЕРВЕРА ───────────────────────────────
 
-// Запрос на страницу авторизации
-app.get("/auth", (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`🚀 Server listening on port ${PORT}`);
 });
-
-// Запускаем веб сервер
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

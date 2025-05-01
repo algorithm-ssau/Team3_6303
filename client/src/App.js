@@ -11,6 +11,7 @@ function App() {
         <Route path="/auth" element={<AuthForm />} />
         <Route path="/reg" element={<RegForm />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/catalog" element={<CarsPage />} />
       </Routes>
     </Router>
   );
