@@ -3,7 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';                  // ⬅ если не используете CORS, можно убрать
 import registerRouter from './routes/register.js';
-import carsRouter    from './routes/cars.js';   // ⬅ новый роутер
+import carsRouter    from './routes/car.js';   // ⬅ новый роутер
 
 // Создаём экземпляр приложения
 const app = express();

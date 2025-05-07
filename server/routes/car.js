@@ -1,7 +1,8 @@
-// server/routes/cars.js
-const express = require('express');
-const router = express.Router();
-const Car = require('../models/Car'); // ваша Mongoose-модель
+// server/routes/car.js   (или routes/cars.js — главное, чтобы путь совпадал)
+import { Router } from 'express';
+import Car from '../models/Car.js';
+
+const router = Router();
 
 // GET /api/cars?transmission=автомат,механика&color=черный&body=седан&fuel=бензин
 router.get('/', async (req, res) => {
@@ -14,10 +15,6 @@ router.get('/', async (req, res) => {
     if (body)         filter.body         = { $in: body.split(',') };
     if (fuel)         filter.fuel         = { $in: fuel.split(',') };
 
-    // сюда можно добавить фильтрацию по числовым полям:
-    // if (req.query.minPrice) filter.price = { $gte: +req.query.minPrice };
-    // if (req.query.maxPrice) filter.price = { ...filter.price, $lte: +req.query.maxPrice };
-
     const cars = await Car.find(filter).lean();
     res.json(cars);
   } catch (err) {
@@ -26,4 +23,4 @@ router.get('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;       // ← default‑экспорт
