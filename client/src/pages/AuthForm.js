@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate } from 'react-router-dom';
 import '../styles/AuthForm.css'; // лучше так пути не писать
 
 const AuthForm = () => {
@@ -7,34 +7,76 @@ const AuthForm = () => {
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(authMethod === 'phone' ? { phone, password } : { email, password });
-    alert('Registration successful!');
-    // Здесь будет логика авторизации
+    setErrors([]);
+    setIsLoading(true);
+  
+    try {
+      const { data } = await axios.post('http://localhost:4000/auth', {
+        authMethod, // 'phone' или 'email'
+        login: authMethod === 'phone' ? phone : email,
+        password
+      });
+
+      localStorage.setItem('userData', JSON.stringify(data));
+      navigate('/');
+    } catch (error) {
+      if (error.response?.data?.errors) {
+        // Обработка ошибок валидации
+        setErrors(error.response.data.errors.map(err => err.msg));
+      } else {
+        setErrors([error.response?.data?.message || 'Ошибка авторизации']);
+      }
+      console.error('Auth error:', error.response?.data);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="auth-container">
       <div className="auth-card">
         <h2>Вход в личный кабинет</h2>
+
+        {errors.length > 0 && (
+          <div className="error-messages">
+            {errors.map((error, index) => (
+              <div key={index} className="error-message">
+                {error}
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="toggle-buttons">
           <button
+            type="button"
             className={`toggle-btn ${authMethod === 'phone' ? 'active' : ''}`}
-            onClick={() => setAuthMethod('phone')}
+            onClick={() => {
+              setAuthMethod('phone');
+              setErrors([]);
+            }}
           >
             Через номер телефона
           </button>
           <button
+            type="button"
             className={`toggle-btn ${authMethod === 'email' ? 'active' : ''}`}
-            onClick={() => setAuthMethod('email')}
+            onClick={() => {
+              setAuthMethod('email');
+              setErrors([]);
+            }}
           >
             Через почту
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} noValidate>
           {authMethod === 'phone' ? (
             <div className="form-group">
               <label>Номер телефона</label>
@@ -42,7 +84,10 @@ const AuthForm = () => {
                 type="tel"
                 placeholder="+7 (___) ___-__-__"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                onChange={(e) => {
+                  setPhone(e.target.value);
+                  setErrors([]);
+                }}
                 required
               />
             </div>
@@ -53,8 +98,10 @@ const AuthForm = () => {
                 type="email"
                 placeholder="example@mail.com"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  setErrors([]);
+                }}
               />
             </div>
           )}
@@ -65,13 +112,20 @@ const AuthForm = () => {
               type="password"
               placeholder="Введите пароль"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+                setErrors([]);
+              }}
               required
             />
           </div>
 
-          <button type="submit" className="submit-btn">
-            Войти в личный кабинет
+          <button 
+            type="submit" 
+            className="submit-btn"
+            disabled={isLoading}
+          >
+            {isLoading ? 'Вход...' : 'Войти в личный кабинет'}
           </button>
         </form>
 
