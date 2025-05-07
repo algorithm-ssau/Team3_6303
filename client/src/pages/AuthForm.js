@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link , useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/AuthForm.css'; // лучше так пути не писать
 
 const AuthForm = () => {

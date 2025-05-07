@@ -46,7 +46,7 @@ const HeaderC = () => {
   };
 
   return (
-    <div className="main-container">
+    <div className="main-container-header">
       <nav className="navbar">
         <div className="navbar-content">
           <div className="site-title-container">
