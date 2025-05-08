@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import HeaderC from '../components/HeaderC';
+import FooterC from '../components/FooterC';
 
 const MainPage = () => {
   // const navigate = useNavigate();
@@ -18,6 +19,7 @@ const MainPage = () => {
         <h2>Добро пожаловать в AutoLambada!</h2>
         <p>Здесь вы найдете лучшие предложения по продаже автомобилей</p>
       </div>
+      <FooterC />
     </div>
    
   );
