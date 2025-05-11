@@ -8,6 +8,7 @@ import path from 'path';
 import RegisterRoutes from './routes/register.js';
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
+import favoritesRoutes from './routes/favorites.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -33,6 +34,7 @@ app.use(cors());
 app.use('/reg', RegisterRoutes);
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
+app.use('/favorites', favoritesRoutes);
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
