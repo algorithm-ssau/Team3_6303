@@ -6,6 +6,7 @@ import cors from 'cors';
 import path from 'path';
 
 import CarCardRoutes from './routes/carCard.js';
+import AdminCarCard from "./routes/adminCarCard.js";
 import RegisterRoutes from './routes/register.js';
 
 const PORT = process.env.PORT || 4000;
@@ -32,6 +33,7 @@ app.use(cors());
 
 app.use('/carCard', CarCardRoutes)
 app.use('/reg', RegisterRoutes);
+app.use('/adminCarCard', AdminCarCard)
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
@@ -50,6 +52,11 @@ app.get("/auth", (req, res) => {
 
 // Запрос на карточку машины
 app.get("/carCard", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
+
+// Запрос на админ карточку машины
+app.get("/adminCarCard", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
 
