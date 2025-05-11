@@ -11,6 +11,9 @@ function App() {
         <Route path="/auth" element={<AuthForm />} />
         <Route path="/reg" element={<RegForm />} />
         <Route path="/" element={<MainPage />} />
+        {/* <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/add-car" element={<AddCarPage />} />
+        <Route path="/profile" element={<ProfielPage />} />  */}
       </Routes>
     </Router>
   );

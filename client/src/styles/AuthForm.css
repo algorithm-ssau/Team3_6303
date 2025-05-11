@@ -129,3 +129,17 @@ body {
 .register-link:hover {
   text-decoration: underline;
 }
+
+
+.error-message {
+  color: #ff4444;
+  padding: 8px 12px;
+  background-color: #ffebee;
+  border-radius: 4px;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.error-message:last-child {
+  margin-bottom: 0;
+}

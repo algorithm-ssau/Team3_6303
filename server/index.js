@@ -6,6 +6,8 @@ import cors from 'cors';
 import path from 'path';
 
 import RegisterRoutes from './routes/register.js';
+import authRoutes from './routes/auth.js';
+import protectedRoutes from './routes/protected.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -29,6 +31,8 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(cors());
 
 app.use('/reg', RegisterRoutes);
+app.use('/auth', authRoutes);
+app.use('/protected', protectedRoutes);
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
@@ -44,6 +48,7 @@ app.get("/reg", (req, res) => {
 app.get("/auth", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
+
 
 // Запускаем веб сервер
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
