@@ -5,27 +5,28 @@ import UserModel from '../models/User.js';
 const router = express.Router();
 
 // Express-прослойка для аутентификации
-const authenticate = async (req, res, next) => {
+// Выносим authenticate перед использованием
+export const authenticate = async (req, res, next) => {
   try {
-      const token = (req.headers.authorization || '').replace('Bearer ', '');
-      console.log('Received token:', token); // Логирование токена
+    const token = (req.headers.authorization || '').replace('Bearer ', '');
+    console.log('Received token:', token);
 
-      if (!token) {
-          return res.status(403).json({ message: 'Требуется авторизация' });
-      }
+    if (!token) {
+      return res.status(403).json({ message: 'Требуется авторизация' });
+    }
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const user = await UserModel.findById(decoded._id);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await UserModel.findById(decoded._id);
 
-      if (!user) {
-          return res.status(403).json({ message: 'Пользователь не найден' });
-      }
+    if (!user) {
+      return res.status(403).json({ message: 'Пользователь не найден' });
+    }
 
-      req.user = user;
-      next();
+    req.user = user;
+    next();
   } catch (err) {
-      console.error('Authentication error:', err);
-      res.status(403).json({ message: 'Ошибка авторизации' });
+    console.error('Authentication error:', err);
+    res.status(403).json({ message: 'Ошибка авторизации' });
   }
 };
 
