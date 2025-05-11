@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AuthForm from './pages/AuthForm';
 import RegForm from './pages/RegForm';
-
+import CarsPage from './pages/CarsPage';
 function App() {
   return (
     <Router>
@@ -11,6 +11,7 @@ function App() {
         <Route path="/auth" element={<AuthForm />} />
         <Route path="/reg" element={<RegForm />} />
         <Route path="/" element={<MainPage />} />
+        <Route path="/cars" element={<CarsPage />} />
         {/* <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/add-car" element={<AddCarPage />} />
         <Route path="/profile" element={<ProfielPage />} />  */}
