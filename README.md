@@ -38,3 +38,9 @@ cd client/
 ``` console
 npm run build
 ```
+
+# Разработчики
+* Маркарян Петрос [Petros607](https://github.com/Petros607)
+* Ибрагимов Артем [TolkovaT](https://github.com/TolkovaT)
+* Чубарь Алина [Chubarinka](https://github.com/Chubarinka)
+* Туркин Матвей [Whymeet](https://github.com/Whymeet)
