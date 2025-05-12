@@ -3,20 +3,29 @@ import axios from "axios";
 import CarCard from './CarCard';
 import '../styles/Catalog.css';
 
-const Catalog = () => {
+const Catalog = ({ filters }) => {
   const [cars, setCars] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/carCard/')
-      .then(res => setCars(res.data))
-      .catch(err => console.error(err));
-  }, []);
+    const fetchCars = async () => {
+      try {
+        const res = await axios.get('/api/cars', { params: filters });
+        setCars(res.data);
+      } catch (err) {
+        console.error('Ошибка при загрузке автомобилей:', err);
+      }
+    };
+
+    fetchCars();
+  }, [filters]);
 
   return (
     <div className="car-catalog">
-      {cars.map(car => (
-        <CarCard car={car} />
-      ))}
+      {cars.length > 0 ? (
+        cars.map(car => <CarCard key={car._id} car={car} />)
+      ) : (
+        <p>Тут пусто</p>
+      )}
     </div>
   );
 };
