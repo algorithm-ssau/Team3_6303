@@ -1,5 +1,10 @@
 .car-card {
-  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 300px;
+  max-height: 550px;
   border-radius: 12px;
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -14,6 +19,7 @@
   overflow-x: auto;
   gap: 10px;
   margin-bottom: 16px;
+  width: 100%;
 }
 
 .car-photo {
@@ -82,6 +88,7 @@
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .car-specs span {
@@ -92,9 +99,20 @@
   font-size: 13px;
 }
 
+.car-specs span.body-type {
+  background: #dfe6f3;
+  color: #1890ff;
+}
+
+.car-specs span.color {
+  background: #e0f7fa;
+  color: #1890ff;
+}
+
 .car-actions {
   display: flex;
   gap: 8px;
+  margin-top: 12px;
 }
 
 .favorite-btn {
@@ -111,12 +129,6 @@
 
 .favorite-btn:hover {
   background: #f5f5f5;
-}
-
-.favorite-btn:hover path {
-  fill: #FFD700;
-  stroke: #FFD700;
-  transition: all 0.3s ease;
 }
 
 .favorite-btn.active path {
@@ -147,14 +159,4 @@
 
 .buy-btn:hover {
   background: #40a9ff;
-}
-
-.car-specs span.body-type {
-  background: #dfe6f3;
-  color: #1890ff;
-}
-
-.car-specs span.color {
-  background: #e0f7fa;
-  color: #1890ff;
 }
