@@ -1,20 +1,25 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import AuthForm from './pages/AuthForm';
-import RegForm from './pages/RegForm';
-import CarsPage from './pages/CarsPage';
+
+import MainPage    from './pages/MainPage';
+import AuthForm    from './pages/AuthForm';
+import RegForm     from './pages/RegForm';
+import CarsPage    from './pages/CarsPage';      // from dev-mt2
+import ProfilePage from './pages/ProfilePage';   // from main
+// import FavoritesPage from './pages/FavoritesPage';
+// import AddCarPage    from './pages/AddCarPage';
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/auth" element={<AuthForm />} />
-        <Route path="/reg" element={<RegForm />} />
-        <Route path="/" element={<MainPage />} />
-        <Route path="/cars" element={<CarsPage />} />
-        {/* <Route path="/favorites" element={<FavoritesPage />} />
-        <Route path="/add-car" element={<AddCarPage />} />
-        <Route path="/profile" element={<ProfielPage />} />  */}
+        <Route path="/auth"    element={<AuthForm />}     />
+        <Route path="/reg"     element={<RegForm />}      />
+        <Route path="/"        element={<MainPage />}     />
+        <Route path="/cars"    element={<CarsPage />}     />   {/* dev-mt2 */}
+        <Route path="/profile" element={<ProfilePage />}  />   {/* main */}
+        {/* <Route path="/favorites" element={<FavoritesPage />} /> */}
+        {/* <Route path="/add-car"   element={<AddCarPage />}   /> */}
       </Routes>
     </Router>
   );

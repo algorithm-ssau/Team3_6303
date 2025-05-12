@@ -6,10 +6,11 @@ import path              from 'path';
 import { fileURLToPath } from 'url';
 
 // ── API-роуты ─────────────────────────────────────────
-import RegisterRoutes  from './routes/register.js';
-import authRoutes      from './routes/auth.js';
-import protectedRoutes from './routes/protected.js';
-import carsRouter      from './routes/cars.js';
+import registerRoutes   from './routes/register.js';
+import authRoutes       from './routes/auth.js';
+import protectedRoutes  from './routes/protected.js';
+import carsRouter       from './routes/cars.js';        // dev-mt2
+import favoritesRoutes  from './routes/favorites.js';   // main
 
 // ── Базовые константы ────────────────────────────────
 dotenv.config();
@@ -30,21 +31,19 @@ app.use(express.json());
 app.use(cors());
 
 // ── API ───────────────────────────────────────────────
-app.use('/reg',       RegisterRoutes);
+app.use('/reg',       registerRoutes);
 app.use('/auth',      authRoutes);
 app.use('/protected', protectedRoutes);
-app.use('/cars',      carsRouter);            // ← ваш эндпоинт /cars
+app.use('/cars',      carsRouter);           // ← /cars эндпоинт
+app.use('/favorites', favoritesRoutes);      // ← /favorites эндпоинт
 
-// ── React-build статика ─────────────────────────────
+// ── React-build статика + SPA-fallback ───────────────
 const buildDir = path.join(__dirname, '..', 'client', 'build');
 app.use(express.static(buildDir));
 
-// ── SPA fallback (без звёздочки!) ────────────────────
 app.use((req, res) => {
-  // любые GET-запросы, которые не совпали с API и статикой,
-  // отдаем index.html, чтобы React Router обработал путь
   if (req.method === 'GET') {
-    res.sendFile(path.join(buildDir, 'index.html'));
+    res.sendFile(path.join(buildDir, 'index.html'));   // отдаём SPA файл
   } else {
     res.status(404).end();
   }
