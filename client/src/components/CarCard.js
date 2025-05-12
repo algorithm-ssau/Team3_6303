@@ -28,17 +28,20 @@ const CarCard = ({ car }) => {
       <div className="car-features">
         {/* Отображение фич автомобиля */} 
         {/* #TODO */}
-        {car.features && car.features.slice(0, showAllFeatures ? car.features.length : 3).map((feature, index) => (
-          <span key={index} className="feature-tag">+{feature}</span>
-        ))}
-        {car.features && car.features.length > 3 && (
-          <button 
-            className="show-more-btn"
-            onClick={toggleFeatures}
-          >
-            {showAllFeatures ? 'Свернуть' : `+${car.features.length - 3} ещё`}
-          </button>
+        {car.additionalInfo && (
+         car.additionalInfo.split(',').slice(0, showAllFeatures ? car.additionalInfo.split(',').length : 3).map((feature, index) => (
+         <span key={index} className="feature-tag">+{feature}</span>
+         ))
         )}
+
+{car.additionalInfo && car.additionalInfo.split(',').length > 3 && (
+  <button 
+    className="show-more-btn"
+    onClick={toggleFeatures}
+  >
+    {showAllFeatures ? 'Свернуть' : `+ещё`}
+  </button>
+)}
       </div>
 
       <div className="divider"></div>
@@ -65,8 +68,6 @@ const CarCard = ({ car }) => {
       <div className="car-specs">
         {/* Тип трансмиссии */}
         <span className="transmission">{car.transmission}</span>
-        {/* Привод */}
-        <span className="drive">{car.drive}</span>
         {/* Тип кузова */}
         <span className="body-type">{car.bodyType}</span>
         {/* Цвет */}
