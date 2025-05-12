@@ -1,0 +1,248 @@
+.profile-page {
+  position: relative;
+  font-family: "Noto Sans", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* background-color: rgb(255, 255, 255); */
+  background: linear-gradient(to bottom, 
+    white 0%, 
+    #DBDDF9 100%);
+}
+
+.profile-wrap {
+  width: 100%;
+  max-width: 1320px;
+  margin: 50px auto;
+  flex-grow: 1;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.left-block {
+  width: 360px;
+  height: 500px;
+  background: #6e8efb;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 
+              0px 2px 4px rgba(0, 0, 0, 0.1),
+              0px 4px 8px rgba(0, 0, 0, 0.1), 
+              0px 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.right-block {
+  width: 930px;
+  height: 500px;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 
+              0px 2px 4px rgba(0, 0, 0, 0.1),
+              0px 4px 8px rgba(0, 0, 0, 0.1), 
+              0px 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column; 
+}
+
+.profile-title {
+  margin-top: 30px;
+  font-weight: bolder;
+  font-size: 25px;
+  color: black;
+}
+
+ .profile-icon {
+  width: 150px;
+  height: 150px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:  auto;
+  color: #ffffff;
+}
+
+.profile-name {
+  font-weight: bolder;
+  font-size: 23px;
+  margin-bottom: 10px;
+  color: rgb(255, 255, 255);
+}
+
+.profile-status {
+  font-size: 18px;
+  margin-bottom: 30px;
+  color: rgb(0, 0, 0);
+}
+
+.profile-contacts {
+  text-align: center; 
+  margin: 0 auto 30px; 
+  width: 100%; 
+}
+
+.profile-phone, .profile-email {
+  font-size: 15px;
+  margin: 10px 0;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  width: 100%; 
+}
+
+.add-car-btn {
+  background: rgb(255, 255, 255);
+  color: #6e8efb;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+.add-car-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 8px rgba(184, 56, 56, 0.2);
+}
+
+.favourites-title {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.cars-list {
+   flex-grow: 1;
+  height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.car-card {
+  position: relative;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.car-card img {
+  width: 150px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.car-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+}
+
+.car-info p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 14px;
+}
+
+/* Стили для скроллбара */
+.cars-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cars-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.cars-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.cars-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.car-card {
+  position: relative; 
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  transition: all 0.2s ease;
+}
+
+.favorite-icon {
+  color: #dc1829;
+  font-size: 20px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.favorite-btn:hover .favorite-icon {
+  color: black;
+  transform: scale(1.1);
+}
+
+@media (max-width: 992px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .left-block, .right-block {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .right-block {
+    margin-left: 0;
+    margin-top: 30px;
+  }
+}
+
+.add-car-btn, .logout-btn {
+  background: rgb(255, 255, 255);
+  color: #6e8efb;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  font-size: 16px;
+  margin: 0 auto;
+  transition: all 0.2s ease;
+}
+
+.add-car-btn:hover, .logout-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
