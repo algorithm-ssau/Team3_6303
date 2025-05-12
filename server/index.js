@@ -5,6 +5,8 @@ import { fileURLToPath } from 'url';
 import cors from 'cors';
 import path from 'path';
 
+import CarCardRoutes from './routes/carCard.js';
+import AdminCarCard from "./routes/adminCarCard.js";
 import RegisterRoutes from './routes/register.js';
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
@@ -31,7 +33,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(cors());
 
+
+app.use('/carCard', CarCardRoutes)
 app.use('/reg', RegisterRoutes);
+app.use('/auth', authRoutes);
+app.use('/protected', protectedRoutes);
+app.use('/favorites', favoritesRoutes);
+app.use('/adminCarCard', AdminCarCard)
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
 app.use('/favorites', favoritesRoutes);
@@ -51,6 +59,15 @@ app.get("/auth", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
 
+// Запрос на карточку машины
+app.get("/carCard", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
+
+// Запрос на админ карточку машины
+app.get("/adminCarCard", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
 
 // Запускаем веб сервер
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
