@@ -34,7 +34,7 @@ app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 app.use(cors());
 
 
-app.use('/carCard', CarCardRoutes)
+app.use('/api/cars', CarCardRoutes);
 app.use('/reg', RegisterRoutes);
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
