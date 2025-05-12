@@ -15,7 +15,7 @@
 ## Ключевые особенности
 
 ### Интеллектуальный помощник
-- **GigaChat Integration**: AI-ассистент помогает:
+- **GigaChat Integration**. AI-ассистент помогает:
   - Рассказывать о типичных проблемах конкретных моделей
   - Отвечать на технические вопросы о комплектациях
 
@@ -71,7 +71,7 @@ cd server && npm install
 ```
 2. Создайте .env файл:
 ```
-PORT=5000
+PORT=4000
 DB_LINK=mongodb+srv://user:pass@cluster.mongodb.net/autolambada
 JWT_SECRET=your_jwt_secret
 GIGACHAT_API_KEY=your_api_key
@@ -97,6 +97,8 @@ npm start
 npm run build
 ```
 
+Сайт доступен по адресу [http://localhost:4000/](http://localhost:4000)
+
 # Разработчики
 * Маркарян Петрос [Petros607](https://github.com/Petros607)
 * Ибрагимов Артем [TolkovaT](https://github.com/TolkovaT)
@@ -105,6 +107,4 @@ npm run build
 
 # TODO
 1. Добавить реальные скриншоты интерфейса
-2. Указать ссылку на работающий прототип (если есть)
-3. Добавить раздел "Планы развития" с roadmap
-4. Включить информацию о лицензии (если проект open-source)
+2. Указать ссылку на работающий прототип (выложенный в сеть)
