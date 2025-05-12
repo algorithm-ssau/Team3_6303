@@ -14,6 +14,7 @@ const MainPage = () => {
     const fetchCars = async () => {
       try {
         const response = await axios.get('/api/cars', { params: filters });
+        console.log('Полученные автомобили:', response.data); // Лог для проверки
         setCars(response.data);
       } catch (error) {
         console.error('Ошибка при загрузке автомобилей:', error);

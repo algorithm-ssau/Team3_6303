@@ -30,6 +30,7 @@ router.get('/', async (req, res) => {
     }
 
     const cars = await CarModel.find(filters);
+    console.log('Найденные автомобили:', cars); // Лог для проверки
     res.status(200).json(cars);
   } catch (err) {
     console.error('Ошибка при фильтрации автомобилей:', err);
