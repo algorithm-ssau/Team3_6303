@@ -34,6 +34,9 @@ app.use(cors());
 app.use('/carCard', CarCardRoutes)
 app.use('/reg', RegisterRoutes);
 app.use('/adminCarCard', AdminCarCard)
+app.use('/auth', authRoutes);
+app.use('/protected', protectedRoutes);
+app.use('/favorites', favoritesRoutes);
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {

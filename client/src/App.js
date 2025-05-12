@@ -5,6 +5,7 @@ import AuthForm from './pages/AuthForm';
 import RegForm from './pages/RegForm';
 import CarCard from './components/CarCard';
 import AdminCarCard from './components/AdminCarCard';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -15,7 +16,9 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/carCard" element={<CarCard />} />
         <Route path="/adminCarCard" element={<AdminCarCard />} />
-
+        <Route path="/car/:id" element={<CarDetailPage />} /> 
+        <Route path="/profile" element={<ProfilePage />} />
+        
       </Routes>
     </Router>
   );
