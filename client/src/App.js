@@ -1,28 +1,31 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import MainPage    from './pages/MainPage';
-import AuthForm    from './pages/AuthForm';
-import RegForm     from './pages/RegForm';
-import CarsPage    from './pages/CarsPage';      // from dev-mt2
-import ProfilePage from './pages/ProfilePage';   // from main
-// import FavoritesPage from './pages/FavoritesPage';
-// import AddCarPage    from './pages/AddCarPage';
+import HeaderC  from './components/HeaderC';
+import MainPage from './pages/MainPage';
+import AuthForm from './pages/AuthForm';
+import RegForm  from './pages/RegForm';
+import CarsPage from './pages/CarsPage';   //  ← новая страница каталога
 
-function App() {
+/**
+ * Глобальный роутер приложения.
+ * HeaderC выводится на всех страницах,
+ * между маршрутами переключаемся через React-Router v6.
+ */
+export default function App() {
   return (
     <Router>
+      <HeaderC />
+
       <Routes>
-        <Route path="/auth"    element={<AuthForm />}     />
-        <Route path="/reg"     element={<RegForm />}      />
-        <Route path="/"        element={<MainPage />}     />
-        <Route path="/cars"    element={<CarsPage />}     />   {/* dev-mt2 */}
-        <Route path="/profile" element={<ProfilePage />}  />   {/* main */}
-        {/* <Route path="/favorites" element={<FavoritesPage />} /> */}
-        {/* <Route path="/add-car"   element={<AddCarPage />}   /> */}
+        <Route path="/"      element={<MainPage />} />
+        <Route path="/auth"  element={<AuthForm />} />
+        <Route path="/reg"   element={<RegForm  />} />
+        <Route path="/cars"  element={<CarsPage />} />
+
+        {/* fallback на главную, если путь не совпал */}
+        <Route path="*"      element={<MainPage />} />
       </Routes>
     </Router>
   );
 }
-
-export default App;
