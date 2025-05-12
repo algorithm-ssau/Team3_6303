@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import AuthForm from './pages/AuthForm';
 import RegForm from './pages/RegForm';
+import ProfilePage from './pages/ProfilePage';
 import CarCard from './components/CarCard';
 import AdminCarCard from './components/AdminCarCard';
 import ProfilePage from './pages/ProfilePage';
@@ -19,6 +20,8 @@ function App() {
         <Route path="/car/:id" element={<CarDetailPage />} /> 
         <Route path="/profile" element={<ProfilePage />} />
         
+        <Route path="/profile" element={<ProfilePage />} />
+        {/* <Route path="/add-car" element={<AddCarPage />} /> */}
       </Routes>
     </Router>
   );

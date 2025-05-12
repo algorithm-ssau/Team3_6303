@@ -8,6 +8,9 @@ import path from 'path';
 import CarCardRoutes from './routes/carCard.js';
 import AdminCarCard from "./routes/adminCarCard.js";
 import RegisterRoutes from './routes/register.js';
+import authRoutes from './routes/auth.js';
+import protectedRoutes from './routes/protected.js';
+import favoritesRoutes from './routes/favorites.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -33,6 +36,9 @@ app.use(cors());
 
 app.use('/carCard', CarCardRoutes)
 app.use('/reg', RegisterRoutes);
+app.use('/auth', authRoutes);
+app.use('/protected', protectedRoutes);
+app.use('/favorites', favoritesRoutes);
 app.use('/adminCarCard', AdminCarCard)
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
