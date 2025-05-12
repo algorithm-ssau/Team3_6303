@@ -26,7 +26,8 @@ const CarCard = ({ car }) => {
       </div>
 
       <div className="car-features">
-        {/* Отображение фич автомобиля */}
+        {/* Отображение фич автомобиля */} 
+        {/* #TODO */}
         {car.features && car.features.slice(0, showAllFeatures ? car.features.length : 3).map((feature, index) => (
           <span key={index} className="feature-tag">+{feature}</span>
         ))}

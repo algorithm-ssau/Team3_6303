@@ -5,6 +5,7 @@ import CarCard from '../components/CarCard';
 import HeaderC from '../components/HeaderC';
 import FooterC from '../components/FooterC';
 import '../styles/MainPage.css';
+import Catalog from '../components/Catalog';
 
 const MainPage = () => {
   const [cars, setCars] = useState([]);
@@ -41,6 +42,8 @@ const MainPage = () => {
           ) : (
             <p>Тут пусто</p>
           )}
+        </div>
+        <div className="car-catalog">
         </div>
       </div>
       <FooterC />
