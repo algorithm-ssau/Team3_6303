@@ -72,7 +72,7 @@ cd server && npm install
 2. Создайте .env файл:
 ```
 PORT=4000
-DB_LINK=mongodb+srv://user:pass@cluster.mongodb.net/autolambada
+DB_LINK=mongodb+srv://user:pass@cluster.mongodb.net/...
 JWT_SECRET=your_jwt_secret
 GIGACHAT_API_KEY=your_api_key
 ```

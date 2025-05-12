@@ -90,14 +90,6 @@ body {
     margin-left: 5px;
 }
 
-/* Стили основного содержимого */
-.page-content {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex: 1;
-}
-
 /* Адаптивность  */
 @media (max-width: 768px) {
     .navbar-content {

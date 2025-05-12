@@ -142,8 +142,6 @@
 }
 
 .car-card img {
-  width: 150px;
-  height: 100px;
   object-fit: cover;
   border-radius: 5px;
 }

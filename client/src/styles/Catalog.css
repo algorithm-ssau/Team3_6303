@@ -1,8 +1,11 @@
 /* styles.css */
 .car-catalog {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 16px;
   padding: 20px;
-  align-items: start;
 }
