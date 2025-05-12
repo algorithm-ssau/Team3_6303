@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FilterPanel.css'; // Создайте файл стилей для фильтров
+import '../styles/FilterPanel.css';
 
 const FilterPanel = ({ onFilterChange }) => {
   const [filters, setFilters] = useState({
