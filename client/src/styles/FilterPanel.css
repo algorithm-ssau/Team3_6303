@@ -1,4 +1,11 @@
 .filter-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 25px;
+  position:sticky;
   padding: 20px;
   background: #f9f9f9;
   border-radius: 8px;
@@ -8,6 +15,7 @@
 
 .filter-group {
   margin-bottom: 15px;
+  width: max-content;
 }
 
 .filter-group label {
@@ -23,4 +31,14 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
+  z-index: 1000;
+}
+
+.react-select__control {
+  border-radius: 6px;
+  border-color: #ccc;
+}
+
+.react-select__multi-value {
+  background-color: #e0e0e0;
 }

@@ -15,10 +15,11 @@ const MainPage = () => {
   return (
     <div className="main-container">
       <HeaderC />
+      <FilterPanel onFilterChange={handleFilterChange} />
       <div className="page-content">
-        <div className="filter-container">
+        {/* <div className="filter-container">
           <FilterPanel onFilterChange={handleFilterChange} />
-        </div>
+        </div> */}
         <Catalog filters={filters} />
       </div>
       <FooterC />
