@@ -19,7 +19,7 @@ const FilterPanel = ({ onFilterChange }) => {
     bodyType: [],
     engineType: [],
     priceMin: 0,  // Инициализация минимальной ценой
-    priceMax: 1000000,  // Инициализация максимальной ценой
+    priceMax: 5000000,  // Инициализация максимальной ценой
     yearMin: 2000,  // Инициализация минимальным годом
     yearMax: 2025,  // Инициализация максимальным годом
     mileageMax: '',
@@ -27,7 +27,7 @@ const FilterPanel = ({ onFilterChange }) => {
 
   const [minMaxValues, setMinMaxValues] = useState({
     priceMin: 0,
-    priceMax: 1000000,
+    priceMax: 5000000,
     yearMin: 2000,
     yearMax: 2025,
   });
@@ -53,20 +53,6 @@ const FilterPanel = ({ onFilterChange }) => {
     onFilterChange(newFilters);
   };
 
-  const renderSelect = (label, name, options) => (
-    <div className="filter-group">
-      <label>{label}</label>
-      <Select
-        isMulti
-        options={toSelectOptions(options)}
-        value={toSelectOptions(filters[name])}
-        onChange={(selected) => handleMultiSelectChange(selected, name)}
-        className="react-select-container"
-        classNamePrefix="react-select"
-      />
-    </div>
-  );
-
    const handleInputChange = (e) => {
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
@@ -91,14 +77,13 @@ const FilterPanel = ({ onFilterChange }) => {
   return (
     <div className="filter-panel">
       <h3>Фильтры</h3>
-
       <div className="filter-group">
         <label>Коробка передач</label>
         <Select
           isMulti
           options={toSelectOptions(transmissionOptions)}
           value={toSelectOptions(filters.transmission)}
-          onChange={(selected) => handleMultiSelectChange(selected, 'engineType')}
+          onChange={(selected) => handleMultiSelectChange(selected, 'transmission')}
           className="react-select-container"
           classNamePrefix="react-select"
           menuPortalTarget={document.body}
@@ -114,7 +99,7 @@ const FilterPanel = ({ onFilterChange }) => {
           isMulti
           options={toSelectOptions(colorOptions)}
           value={toSelectOptions(filters.color)}
-          onChange={(selected) => handleMultiSelectChange(selected, 'engineType')}
+          onChange={(selected) => handleMultiSelectChange(selected, 'color')}
           className="react-select-container"
           classNamePrefix="react-select"
           menuPortalTarget={document.body}
@@ -130,7 +115,7 @@ const FilterPanel = ({ onFilterChange }) => {
           isMulti
           options={toSelectOptions(bodyTypeOptions)}
           value={toSelectOptions(filters.bodyType)}
-          onChange={(selected) => handleMultiSelectChange(selected, 'engineType')}
+          onChange={(selected) => handleMultiSelectChange(selected, 'bodyType')}
           className="react-select-container"
           classNamePrefix="react-select"
           menuPortalTarget={document.body}
