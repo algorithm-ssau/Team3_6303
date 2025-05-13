@@ -11,7 +11,7 @@ const CarDetail = () => {
   const [car, setCar] = useState(null);
 
   useEffect(() => {
-    axios.get(`/api/cars/${id}`)
+    axios.get(`http://localhost:4000/api/cars/${id}`)
       .then((res) => setCar(res.data))
       .catch((err) => console.error(err));
   }, [id]);

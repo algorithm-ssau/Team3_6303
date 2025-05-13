@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/CarCard.css';
 
@@ -117,8 +117,13 @@ const CarCard = ({ car }) => {
       </div>
 
       <div className="car-actions">
-        <button className="favorite-btn">
-          {/* SVG icon */}
+        <button
+          className="favorite-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          ❤
         </button>
       </div>
     </div>
