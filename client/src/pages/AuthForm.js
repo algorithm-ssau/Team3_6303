@@ -79,7 +79,7 @@ const AuthForm = () => {
 
         <form onSubmit={handleSubmit} noValidate>
           {authMethod === 'phone' ? (
-            <div className="form-group">
+            <div className="auth-form-group">
               <label>Номер телефона</label>
               <input
                 type="tel"
@@ -93,7 +93,7 @@ const AuthForm = () => {
               />
             </div>
           ) : (
-            <div className="form-group">
+            <div className="auth-form-group">
               <label>Email</label>
               <input
                 type="email"
@@ -107,7 +107,7 @@ const AuthForm = () => {
             </div>
           )}
 
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Пароль</label>
             <input
               type="password"

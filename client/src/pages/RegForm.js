@@ -46,7 +46,7 @@ const RegForm = () => {
         <h2>Регистрация</h2>
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Имя пользователя</label>
             <input
               type="text"
@@ -57,7 +57,7 @@ const RegForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Email</label>
             <input
               type="email"
@@ -68,7 +68,7 @@ const RegForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Номер телефона</label>
             <input
               type="tel"
@@ -79,7 +79,7 @@ const RegForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Пароль</label>
             <input
               type="password"
@@ -90,7 +90,7 @@ const RegForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          <div className="auth-form-group">
             <label>Подтвердите пароль</label>
             <input
               type="password"
