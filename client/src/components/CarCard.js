@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState , useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/CarCard.css';
 
 const CarCard = ({ car }) => {
   const [showAllFeatures, setShowAllFeatures] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const navigate = useNavigate();
 
   const toggleFeatures = () => setShowAllFeatures(!showAllFeatures);
 
@@ -27,6 +29,10 @@ const CarCard = ({ car }) => {
     );
   };
 
+  const handleCardClick = () => {
+    navigate(`/car/${car._id}`);
+  };
+
   // Автопрокрутка
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,7 +43,7 @@ const CarCard = ({ car }) => {
   }, [car.photos.length]);
 
   return (
-    <div className="car-card">
+    <div className="car-card" onClick={handleCardClick}>
       {/* Фото автомобиля на всю ширину карточки */}
       <div className="photo-wrapper">
         <img
@@ -47,8 +53,25 @@ const CarCard = ({ car }) => {
         />
         {car.photos.length > 1 && (
           <>
-            <button onClick={prevPhoto} className="slider-btn left">&lt;</button>
-            <button onClick={nextPhoto} className="slider-btn right">&gt;</button>
+            <button
+              className="slider-btn left"
+              onClick={(e) => {
+                e.stopPropagation();
+                prevPhoto();
+              }}
+            >
+              &lt;
+            </button>
+
+            <button
+              className="slider-btn right"
+              onClick={(e) => {
+                e.stopPropagation();
+                nextPhoto();
+              }}
+            >
+              &gt;
+            </button>
           </>
         )}
       </div>
@@ -61,7 +84,13 @@ const CarCard = ({ car }) => {
           ))
         )}
         {car.additionalInfo && car.additionalInfo.split(',').length > 3 && (
-          <button className="show-more-btn" onClick={toggleFeatures}>
+          <button
+            className="show-more-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFeatures();
+            }}
+          >
             {showAllFeatures ? 'Свернуть' : '+ещё'}
           </button>
         )}
@@ -88,8 +117,13 @@ const CarCard = ({ car }) => {
       </div>
 
       <div className="car-actions">
-        <button className="favorite-btn">
-          {/* SVG icon */}
+        <button
+          className="favorite-btn"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          ❤
         </button>
       </div>
     </div>

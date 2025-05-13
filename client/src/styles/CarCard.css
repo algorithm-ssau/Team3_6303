@@ -10,6 +10,7 @@
   font-family: 'Arial', sans-serif;
   position: relative;
   padding: 0;
+  cursor: pointer;
 }
 
 .photo-wrapper {
@@ -127,30 +128,24 @@
 }
 
 .car-actions {
+  margin-top: 16px;
   display: flex;
-  gap: 8px;
-  margin-top: 12px;
+  justify-content: center;
 }
 
 .favorite-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: 4px;
-  border: 1px solid #e8e8e8;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  font-size: 25px;
   cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
 }
 
 .favorite-btn:hover {
-  background: #f5f5f5;
-}
-
-.favorite-btn.active path {
-  fill: #FF0000;
-  stroke: #FF0000;
+  background-color: #f0f0f0;
+  color: rgb(255, 0, 51);
 }
 
 .contact-btn,

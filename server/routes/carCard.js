@@ -46,4 +46,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/:id', async (req, res) => {
+  try {
+    const car = await CarModel.findById(req.params.id);
+
+    if (!car) {
+      return res.status(404).json({
+        message: 'Автомобиль не найден',
+      });
+    }
+
+    res.status(200).json(car);
+  } catch (err) {
+    console.error(`Ошибка при получении автомобиля с ID ${req.params.id}:`, err);
+    res.status(500).json({
+      message: 'Не удалось получить автомобиль',
+      error: err.message,
+    });
+  }
+});
+
 export default router
