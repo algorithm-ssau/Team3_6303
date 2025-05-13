@@ -25,3 +25,6 @@ yarn-error.log*
 
 .env
 node_modules/
+
+.venv
+.aivenv
