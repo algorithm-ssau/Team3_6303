@@ -63,18 +63,18 @@ body {
   color: white;
 }
 
-.form-group {
+.auth-form-group {
   margin-bottom: 20px;
 }
 
-.form-group label {
+.auth-form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
   color: #555;
 }
 
-.form-group input {
+.auth-form-group input {
   width: 100%;
   padding: 12px 0px;
   border: 1px solid #ddd;
@@ -84,13 +84,13 @@ body {
   text-indent: 8px;
 }
 
-.form-group input::placeholder {
+.auth-form-group input::placeholder {
   text-align: left;
   direction: ltr;
   opacity: 0.6;
 }
 
-.form-group input:focus {
+.auth-form-group input:focus {
   border-color: #6e8efb;
   outline: none;
 }
