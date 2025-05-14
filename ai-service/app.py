@@ -16,10 +16,9 @@ def chat():
     """
     Обработка сообщений от пользователя в рамках чата.
     Получает сообщение от пользователя, передаёт его агенту и возвращает ответ.
+    В query parameter: chatid
     Запрос JSON:
         {
-            "userId": "<user_id>",
-            "carId": "<car_id>",
             "message": "<вопрос пользователя>"
         }
     Ответ JSON:
@@ -29,14 +28,12 @@ def chat():
     Returns:
         flask.Response: JSON-ответ с ответом агента или ошибкой.
     """
+    chat_id = request.args.get("chatid")
+    if not chat_id:
+        return jsonify({"error": "Параметр chatid обязателен."}), 400
+    
     data = request.json
-    user_id = data.get("userId")
-    car_id = data.get("carId")
-
-    if not user_id or not car_id:
-        return jsonify({"error": "Не указан userId или carId"}), 400
-
-    chat_id = f"{car_id}{user_id}"
+    # chat_id = f"{car_id}{user_id}"
     question = data.get("message")
 
     if not question or len(question.strip()) == 0:
