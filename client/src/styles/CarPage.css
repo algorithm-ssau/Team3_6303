@@ -1,0 +1,23 @@
+.car-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.car-page-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.loading, .error {
+  text-align: center;
+  padding: 50px;
+  font-size: 18px;
+}
+
+.error {
+  color: #d32f2f;
+}

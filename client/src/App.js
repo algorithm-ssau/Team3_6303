@@ -7,6 +7,8 @@ import ProfilePage from './pages/ProfilePage';
 import CarCard from './components/CarCard';
 import AdminCarCard from './components/AdminCarCard';
 import CarDetail from './pages/CarDetail';
+import CarPage from './pages/CarPage';
+import AddAvtoPage from './pages/AddAvtoPage';
 
 function App() {
   return (
@@ -19,7 +21,8 @@ function App() {
         <Route path="/adminCarCard" element={<AdminCarCard />} />
         <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/profile" element={<ProfilePage />} />
-        {/* <Route path="/add-car" element={<AddCarPage />} /> */}
+        <Route path="/car/:carId" element={<CarPage />} />
+        <Route path="/add-car" element={<AddAvtoPage />} />
       </Routes>
     </Router>
   );

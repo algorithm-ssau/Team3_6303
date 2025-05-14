@@ -126,15 +126,45 @@
 .fav-button {
   background: none;
   border: none;
-  font-size: 40px;
-  color: #999;
+  font-size: 24px;
   cursor: pointer;
-  transition: color 0.3s ease;
-  padding: 0;
+  transition: all 0.2s;
+  padding: 5px 10px;
+  color: #ccc;
 }
 
-.fav-button:hover {
-  color: #e74c3c;
+.fav-button.active {
+  color: red;
+}
+
+.fav-button:hover:not(:disabled) {
+  transform: scale(1.1);
+}
+
+.fav-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Стили для уведомления */
+.notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 .modal-overlay {
@@ -165,6 +195,17 @@
 }
 
 .modal-close {
+  padding: 8px 16px;
+  background-color: #6e8efb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.contact-button{
   padding: 8px 16px;
   background-color: #6e8efb;
   color: white;

@@ -1,11 +1,82 @@
 import React, { useState , useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import '../styles/CarCard.css';
 
 const CarCard = ({ car }) => {
-  const [showAllFeatures, setShowAllFeatures] = useState(false);
+   const [showAllFeatures, setShowAllFeatures] = useState(false);
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [notification, setNotification] = useState(null);
   const navigate = useNavigate();
+
+ // Проверяем, добавлен ли автомобиль в избранное
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      try {
+        const token = localStorage.getItem('userData') 
+          ? JSON.parse(localStorage.getItem('userData')).token 
+          : null;
+        
+        if (!token) return;
+
+        const response = await axios.get(`http://localhost:4000/favorites`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const isCarFavorite = response.data.some(favCar => favCar._id === car._id);
+        setIsFavorite(isCarFavorite);
+      } catch (error) {
+        console.error('Ошибка проверки избранного:', error);
+      }
+    };
+
+    checkFavoriteStatus();
+  }, [car._id]);
+
+  const toggleFavorite = async (e) => {
+  e.stopPropagation();
+  setIsLoading(true);
+
+  try {
+    const token = localStorage.getItem('userData') 
+      ? JSON.parse(localStorage.getItem('userData')).token 
+      : null;
+
+    if (!token) {
+      navigate('/auth');
+      return;
+    }
+
+    if (isFavorite) {
+      await axios.delete(`http://localhost:4000/favorites/${car._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    } else {
+      await axios.post(`http://localhost:4000/favorites/${car._id}`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+
+    setIsFavorite(!isFavorite);
+    setNotification(isFavorite ? 'Удалено из избранного' : 'Добавлено в избранное'); // Добавлено здесь
+    setTimeout(() => setNotification(null), 2000); // Добавлено здесь
+  } catch (error) {
+    console.error('Ошибка при изменении избранного:', error);
+    if (error.response?.status === 401) {
+      navigate('/auth');
+    }
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const toggleFeatures = () => setShowAllFeatures(!showAllFeatures);
 
@@ -118,14 +189,18 @@ const CarCard = ({ car }) => {
 
       <div className="car-actions">
         <button
-          className="favorite-btn"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
+          className={`favorite-btn ${isFavorite ? 'active' : ''}`}
+          onClick={toggleFavorite}
+          disabled={isLoading}
         >
-          ❤
+          {isFavorite ? '❤️' : '🤍'}
         </button>
       </div>
+      {notification && (
+      <div className="notification">
+        {notification}
+      </div>
+    )}
     </div>
   );
 };
