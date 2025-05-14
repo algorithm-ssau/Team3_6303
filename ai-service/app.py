@@ -29,14 +29,12 @@ def chat():
     Returns:
         flask.Response: JSON-ответ с ответом агента или ошибкой.
     """
+    chat_id = request.args.get("chatid")
+    if not chat_id:
+        return jsonify({"error": "Параметр chatid обязателен."}), 400
+    
     data = request.json
-    user_id = data.get("userId")
-    car_id = data.get("carId")
-
-    if not user_id or not car_id:
-        return jsonify({"error": "Не указан userId или carId"}), 400
-
-    chat_id = f"{car_id}{user_id}"
+    # chat_id = f"{car_id}{user_id}"
     question = data.get("message")
 
     if not question or len(question.strip()) == 0:
