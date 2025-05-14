@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import axios from "axios";
 import "./ChatWidget.css";
 
 export default function ChatWidget({ carId, userId }) {
@@ -8,25 +9,16 @@ export default function ChatWidget({ carId, userId }) {
   const [initialized, setInitialized] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const carData = {
-    carId,
-    userId,
-    brand: "BMW",
-    model: "X5",
-    year: 2019,
-    bodyType: "SUV",
-    color: "black",
-    engineType: "petrol",
-    engineVolume: 3.0,
-    enginePower: 340,
-    transmission: "automatic",
-    mileage: 15000,
-    price: 4500000,
-    additionalInfo: "One owner, no accidents",
-  };
-
   const initChat = async () => {
     try {
+      // Fetch car data from backend
+      const carResponse = await axios.get(`http://localhost:4000/api/cars/${carId}`);
+      const carData = {
+        ...carResponse.data,
+        userId
+      };
+
+      // Initialize chat with fetched car data
       const res = await fetch("http://localhost:5001/create_chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
