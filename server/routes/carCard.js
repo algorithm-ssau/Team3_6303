@@ -46,6 +46,33 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Получение минимальных и максимальных значений для фильтров
+router.get('/filter-ranges', async (req, res) => {
+  try {
+    // Получаем минимальные и максимальные значения для всех нужных полей
+    const minMaxValues = await CarModel.aggregate([
+      {
+        $group: {
+          _id: null,
+          priceMin: { $min: '$price' },
+          priceMax: { $max: '$price' },
+          yearMin: { $min: '$year' },
+          yearMax: { $max: '$year' },
+        },
+      },
+    ]);
+
+    if (minMaxValues.length === 0) {
+      return res.status(404).json({ message: 'Нет данных для фильтров' });
+    }
+
+    res.status(200).json(minMaxValues[0]);
+  } catch (err) {
+    console.error('Ошибка при получении диапазонов фильтров:', err);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 router.get('/:id', async (req, res) => {
   try {
     const car = await CarModel.findById(req.params.id);
