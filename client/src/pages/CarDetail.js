@@ -4,6 +4,7 @@ import axios from 'axios';
 import CarMainInfo from '../components/CarMainInfo';
 import HeaderC from '../components/HeaderC';
 import FooterC from '../components/FooterC';
+import Chat from '../components/Chat';
 import '../styles/CarDetail.css';
 
 const CarDetail = () => {
@@ -23,14 +24,12 @@ const CarDetail = () => {
       <HeaderC />
       <main className="main-content">
         <div className="car-detail-container">
-          <div className="car-detail-left">
+          <div className="car-detail-content">
             <CarMainInfo car={car} />
-          </div>
-          <div className="car-detail-right">
-            {/* Тут можно добавить блок с кнопкой "в избранное" и т.п. */}
           </div>
         </div>
       </main>
+      <Chat carId={id} />
       <FooterC />
     </div>
   );

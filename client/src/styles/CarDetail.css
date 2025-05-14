@@ -5,30 +5,59 @@ html, body, #root {
 }
 
 .page-wrapper {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  position: relative;
 }
 
 .main-content {
   flex: 1;
+  padding: 2rem;
+  background-color: #f5f5f5;
 }
 
 /* Контейнер деталей авто */
 .car-detail-container {
-  display: flex;
-  gap: 32px;
-  padding: 40px;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.car-detail-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .car-detail-left {
-  flex: 2;
+  flex: 1;
+  min-width: 0;
 }
 
 .car-detail-right {
-  flex: 1;
-  position: sticky;
-  top: 20px;
+  width: 400px;
+  min-width: 400px;
+}
+
+@media (max-width: 1200px) {
+  .car-detail-container {
+    flex-direction: column;
+  }
+
+  .car-detail-right {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .car-detail-content {
+    padding: 1rem;
+  }
 }
