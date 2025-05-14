@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 import time
 
 from ai_module import generate_car_prompt, create_agent, init_model
