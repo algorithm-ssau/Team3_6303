@@ -4,11 +4,13 @@ import axios from 'axios';
 import CarMainInfo from '../components/CarMainInfo';
 import HeaderC from '../components/HeaderC';
 import FooterC from '../components/FooterC';
+import ChatWidget from '../components/ChatWidget';
 import '../styles/CarDetail.css';
 
 const CarDetail = () => {
   const { id } = useParams();
   const [car, setCar] = useState(null);
+  const userId = "user-" + Math.random().toString(36).substr(2, 9); // Generate random user ID
 
   useEffect(() => {
     axios.get(`http://localhost:4000/api/cars/${id}`)
@@ -30,6 +32,7 @@ const CarDetail = () => {
             {/* Тут можно добавить блок с кнопкой "в избранное" и т.п. */}
           </div>
         </div>
+        <ChatWidget carId={id} userId={userId} />
       </main>
       <FooterC />
     </div>
