@@ -30,3 +30,5 @@ node_modules/
 .aivenv
 __pycache__
 __pycache__/
+ai-module.cpython*
+main.cpython*
