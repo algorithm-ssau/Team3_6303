@@ -19,8 +19,11 @@ from langchain_gigachat.chat_models import GigaChat
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 
-def init_model():
+
+def init_model(credentials):
     model = GigaChat(
+            credentials=credentials,
+            scope="GIGACHAT_API_PERS",
             model="GigaChat",
             verify_ssl_certs=False
         )
