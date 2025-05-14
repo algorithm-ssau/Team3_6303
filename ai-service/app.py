@@ -5,7 +5,6 @@ import time
 from ai_module import generate_car_prompt, create_agent, init_model
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "http://localhost:4000"]}})
 model = init_model()
 
 chat_sessions = {}  # {chat_id: {"agent": ..., "created_at": ...}}
