@@ -11,6 +11,7 @@ import RegisterRoutes from './routes/register.js';
 import authRoutes from './routes/auth.js';
 import protectedRoutes from './routes/protected.js';
 import favoritesRoutes from './routes/favorites.js';
+import addCarRoutes from './routes/addCar.js';
 
 const PORT = process.env.PORT || 4000;
 
@@ -43,6 +44,7 @@ app.use('/adminCarCard', AdminCarCard)
 app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
 app.use('/favorites', favoritesRoutes);
+app.use('/add-car', addCarRoutes);
 
 // Дефолт запрос на основную страницу
 app.get("/", (req, res) => {
@@ -68,6 +70,12 @@ app.get("/carCard", (req, res) => {
 app.get("/adminCarCard", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
+
+// Запрос на добавление новой машины 
+app.get("/addCar", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
+
 
 // Запускаем веб сервер
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
