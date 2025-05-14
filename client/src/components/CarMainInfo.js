@@ -1,12 +1,86 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import '../styles/CarMainInfo.css';
 
 const CarMainInfo = ({ car }) => {
+   const navigate = useNavigate();
   const photos = car.photos || [];
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [hoveredEdge, setHoveredEdge] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [notification, setNotification] = useState(null);
+
+  // Проверяем, добавлен ли автомобиль в избранное
+  useEffect(() => {
+    const checkFavoriteStatus = async () => {
+      try {
+        const token = localStorage.getItem('userData') 
+          ? JSON.parse(localStorage.getItem('userData')).token 
+          : null;
+        
+        if (!token) return;
+
+        const response = await axios.get(`http://localhost:4000/favorites`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+
+        const isCarFavorite = response.data.some(favCar => favCar._id === car._id);
+        setIsFavorite(isCarFavorite);
+      } catch (error) {
+        console.error('Ошибка проверки избранного:', error);
+      }
+    };
+
+    checkFavoriteStatus();
+  }, [car._id]);
+
+  const toggleFavorite = async (e) => {
+    e.stopPropagation();
+    setIsLoading(true);
+
+    try {
+      const token = localStorage.getItem('userData') 
+        ? JSON.parse(localStorage.getItem('userData')).token 
+        : null;
+
+      if (!token) {
+        navigate('/auth');
+        return;
+      }
+
+      if (isFavorite) {
+        await axios.delete(`http://localhost:4000/favorites/${car._id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      } else {
+        await axios.post(`http://localhost:4000/favorites/${car._id}`, {}, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
+
+      setIsFavorite(!isFavorite);
+      setNotification(isFavorite ? 'Удалено из избранного' : 'Добавлено в избранное');
+      setTimeout(() => setNotification(null), 2000);
+    } catch (error) {
+      console.error('Ошибка при изменении избранного:', error);
+      if (error.response?.status === 401) {
+        navigate('/auth');
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   const handleClick = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -93,8 +167,12 @@ const CarMainInfo = ({ car }) => {
         <div className="car-title-with-fav">
           <h1>{car.brand} {car.model} {car.generation}, {car.year}</h1>
           <div className="car-actions">
-            <button className="fav-button" onClick={() => console.log('Добавлено в избранное')}>
-              ♥
+            <button 
+              className={`fav-button ${isFavorite ? 'active' : ''}`}
+              onClick={toggleFavorite}
+              disabled={isLoading}
+            >
+              {isFavorite ? '♥' : '♡'}
             </button>
             <button className="contact-button" onClick={handleContactClick}>
               Связаться
@@ -132,6 +210,11 @@ const CarMainInfo = ({ car }) => {
             alt="Полноэкранное фото"
             className="fullscreen-image"
           />
+        </div>
+      )}
+       {notification && (
+        <div className="notification">
+          {notification}
         </div>
       )}
     </div>

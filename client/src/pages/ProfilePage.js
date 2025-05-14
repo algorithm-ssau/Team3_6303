@@ -10,7 +10,7 @@ const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,6 +65,11 @@ const ProfilePage = () => {
     return <div className="error">Не удалось загрузить данные пользователя</div>;
   }
 
+  const handleCarClick = (carId, e) => {
+    e.stopPropagation(); // Предотвращаем всплытие события
+    navigate(`/car/${carId}`);
+  };
+
   return (
     <div className="profile-page">
       <HeaderC />
@@ -93,30 +98,45 @@ const ProfilePage = () => {
               </button>
             )}
           </div>
-          <div className="right-block">
-            <h1 className="favourites-title">Избранное</h1>
-            <div className="cars-list">
+            <div className="right-block-pf">
+            <h1 className="favourites-title-pf">Избранное</h1>
+            <div className="cars-list-pf">
               {cars.length > 0 ? (
                 cars.map((car) => (
-                  <div key={car._id} className="car-card">
-                    <img src={car.photos[0]} alt={`${car.brand} ${car.model}`} />
-                    <div className="car-info">
+                  <div 
+                    key={car._id} 
+                    className="car-card-pf"
+                    onClick={(e) => handleCarClick(car._id, e)}
+                  >
+                    <div className="car-image-container-pf">
+                      <img 
+                        src={car.photos[0]} 
+                        alt={`${car.brand} ${car.model}`} 
+                        className="car-image-pf"
+                      />
+                    </div>
+                    <div className="car-info-pf">
                       <h3>{car.brand} {car.model}</h3>
-                      <p>Цена: {car.price.toLocaleString()} ₽</p>
-                      <p>Коробка: {car.transmission}</p>
-                      <p>Цвет: {car.color}</p>
-                      <p>Год: {car.year}</p>
+                      <div className="car-details-pf">
+                        <p><strong>Цена:</strong> {car.price.toLocaleString()} ₽</p>
+                        <p><strong>Коробка:</strong> {car.transmission}</p>
+                        <p><strong>Цвет:</strong> {car.color}</p>
+                        <p><strong>Год:</strong> {car.year}</p>
+                      </div>
                     </div>
                     <button 
-                      className="favorite-btn"
-                      onClick={() => handleToggleFavorite(car._id)}
+                      className="favorite-btn-pf"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggleFavorite(car._id);
+                      }}
                     >
-                      <FaHeart className="favorite-icon" />
+                      <FaHeart className="favorite-icon-pf" />
                     </button>
                   </div>
                 ))
               ) : (
-                <div className="no-cars">У вас пока нет избранных машин</div>
+                <div className="no-cars-pf">У вас пока нет избранных машин</div>
               )}
             </div>
           </div>
