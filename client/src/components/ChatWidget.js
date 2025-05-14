@@ -36,7 +36,6 @@ export default function ChatWidget({ carId, userId }) {
       if (data.chatId) {
         setChatId(data.chatId);
         setInitialized(true);
-        // Add welcome message
         setMessages([{
           role: "assistant",
           text: "Hello! I'm your AI assistant. How can I help you with this car?"
@@ -54,10 +53,10 @@ export default function ChatWidget({ carId, userId }) {
     setInput("");
 
     try {
-      const res = await fetch(`http://localhost:5001/chat?chatid=${chatId}`, {
+      const res = await fetch(`http://localhost:5001/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ carId, userId, message: input }),
+        body: JSON.stringify({ carId, userId, message: input, chatId }),
       });
       const data = await res.json();
       const botMsg = { role: "assistant", text: data.response };

@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import time
 
 from ai_module import generate_car_prompt, create_agent, init_model
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": ["http://localhost:3000", "http://localhost:4000"]}})
 model = init_model()
 
 chat_sessions = {}  # {chat_id: {"agent": ..., "created_at": ...}}
@@ -20,7 +22,8 @@ def chat():
         {
             "userId": "<user_id>",
             "carId": "<car_id>",
-            "message": "<вопрос пользователя>"
+            "message": "<вопрос пользователя>",
+            "chatId": "<идентификатор чата>"
         }
     Ответ JSON:
         {
@@ -32,11 +35,11 @@ def chat():
     data = request.json
     user_id = data.get("userId")
     car_id = data.get("carId")
+    chat_id = data.get("chatId")
 
-    if not user_id or not car_id:
-        return jsonify({"error": "Не указан userId или carId"}), 400
+    if not user_id or not car_id or not chat_id:
+        return jsonify({"error": "Не указан userId, carId или chatId"}), 400
 
-    chat_id = f"{car_id}{user_id}"
     question = data.get("message")
 
     if not question or len(question.strip()) == 0:
