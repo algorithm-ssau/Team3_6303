@@ -21,6 +21,7 @@
   display: flex;
   justify-content: space-between;
   gap: 30px;
+  height: calc(100vh - 200px);
 }
 
 .left-block {
@@ -37,6 +38,10 @@
   display: flex;
   flex-direction: column;
   align-items: center; 
+  position: sticky;
+  top: 20px;
+  align-self: flex-start;
+  height: fit-content;
 }
 
 .right-block {
@@ -243,4 +248,159 @@
 .add-car-btn:hover, .logout-btn:hover {
   transform: scale(1.04);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+/* ProfilePage.css (новые стили для карточек) */
+
+.right-block-pf {
+  width: 930px;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1), 
+              0px 2px 4px rgba(0, 0, 0, 0.1),
+              0px 4px 8px rgba(0, 0, 0, 0.1), 
+              0px 8px 16px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Занимает всю высоту родителя */
+}
+.favourites-title-pf {
+  font-weight: bolder;
+  font-size: 25px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.cars-list-pf {
+  flex-grow: 1;
+  overflow-y: auto; /* Внутренний скролл */
+  padding-right: 10px;
+  max-height: calc(100% - 60px); /* Оставляем место для заголовка */
+}
+
+.car-card-pf {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.car-card-pf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.car-image-container-pf {
+  width: 200px;
+  height: 120px;
+  flex-shrink: 0;
+  margin-right: 20px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.car-image-pf {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.car-info-pf {
+  flex-grow: 1;
+}
+
+.car-info-pf h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.car-details-pf {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.car-details-pf p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.car-details-pf strong {
+  color: #333;
+}
+
+.favorite-btn-pf {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: auto;
+  align-self: flex-start;
+}
+
+.favorite-icon-pf {
+  color: #dc1829;
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+.favorite-btn-pf:hover .favorite-icon-pf {
+  transform: scale(1.1);
+}
+
+.no-cars-pf {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* Стили для скроллбара */
+.cars-list-pf::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cars-list-pf::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.cars-list-pf::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.cars-list-pf::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 992px) {
+  .profile-container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+  
+  .left-block {
+    position: static;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .right-block-pf {
+    width: 100%;
+    height: 500px; /* Фиксированная высота на мобильных */
+  }
 }
