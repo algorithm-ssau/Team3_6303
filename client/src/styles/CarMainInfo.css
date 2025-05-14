@@ -205,6 +205,17 @@
   transition: background-color 0.3s ease;
 }
 
+.contact-button{
+  padding: 8px 16px;
+  background-color: #6e8efb;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
 .modal-close:hover {
   background-color: #5573d6;
 }
