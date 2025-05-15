@@ -27,7 +27,7 @@ export default function ChatWidget({ carId, userId }) {
       };
 
       // Initialize chat with fetched car data
-      const res = await fetch("http://localhost:5001/create_chat", {
+      const res = await fetch("http://ai-service-petros607.amvera.io/create_chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(carData),
@@ -53,7 +53,7 @@ export default function ChatWidget({ carId, userId }) {
     setInput("");
 
     try {
-      const res = await fetch(`http://localhost:5001/chat?chatid=${chatId}`, {
+      const res = await fetch(`http://ai-service-petros607.amvera.io/chat?chatid=${chatId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ carId, userId, message: input }),
