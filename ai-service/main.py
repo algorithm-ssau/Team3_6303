@@ -16,7 +16,10 @@ load_dotenv()
 # Разрешаем CORS со всех доменов, IP и портов
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # <- ВСЕ источники
+    allow_origins=[
+    "http://194.87.146.152",
+    "http://194.87.146.152:3000"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
