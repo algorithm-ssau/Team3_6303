@@ -15,7 +15,7 @@ const CarDetail = () => {
 
   useEffect(() => {
     // Получение данных об автомобиле (это делаем в любом случае)
-    axios.get(`http://194.87.146.152/api/cars/${id}`)
+    axios.get(`http://194.87.146.152:4000/api/cars/${id}`)
       .then((res) => setCar(res.data))
       .catch((err) => console.error(err));
       

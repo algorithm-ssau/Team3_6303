@@ -18,7 +18,7 @@ const AuthForm = () => {
     setIsLoading(true);
   
     try {
-      const { data } = await axios.post('http://194.87.146.152/auth', {
+      const { data } = await axios.post('http://194.87.146.152:4000/auth', {
         authMethod, // 'phone' или 'email'
         login: authMethod === 'phone' ? phone : email,
         password
