@@ -23,7 +23,7 @@ const HeaderC = () => {
           setUser(userData);
           
           // Дополнительная проверка токена (опционально)
-          const response = await axios.get('http://localhost:4000/protected/me', {
+          const response = await axios.get('http://194.87.146.152/protected/me', {
             headers: { Authorization: `Bearer ${userData.token}` }
           });
           setUser(response.data);

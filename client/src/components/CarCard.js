@@ -21,7 +21,7 @@ const CarCard = ({ car }) => {
         
         if (!token) return;
 
-        const response = await axios.get(`http://localhost:4000/favorites`, {
+        const response = await axios.get(`http://194.87.146.152/favorites`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -52,13 +52,13 @@ const CarCard = ({ car }) => {
     }
 
     if (isFavorite) {
-      await axios.delete(`http://localhost:4000/favorites/${car._id}`, {
+      await axios.delete(`http://194.87.146.152/favorites/${car._id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
     } else {
-      await axios.post(`http://localhost:4000/favorites/${car._id}`, {}, {
+      await axios.post(`http://194.87.146.152/favorites/${car._id}`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }

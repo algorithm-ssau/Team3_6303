@@ -15,7 +15,7 @@ const CarPage = () => {
   useEffect(() => {
     const fetchCarData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/cars/${carId}`);
+        const response = await axios.get(`http://194.87.146.152/cars/${carId}`);
         setCar(response.data);
       } catch (err) {
         setError(err.response?.data?.message || 'Не удалось загрузить данные автомобиля');

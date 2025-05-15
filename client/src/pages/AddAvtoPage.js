@@ -73,7 +73,7 @@ const AddAvtoPage = () => {
       mileage: Number(formData.mileage)
     };
 
-    const response = await axios.post('http://localhost:4000/add-car', dataToSend, {
+    const response = await axios.post('http://194.87.146.152/add-car', dataToSend, {
       headers: {
         'Authorization': `Bearer ${userData.token}`,
         'Content-Type': 'application/json'

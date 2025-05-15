@@ -19,7 +19,7 @@ const RegForm = () => {
     }
     
     try {
-      const response = await axios.post('http://localhost:4000/reg/register', {
+      const response = await axios.post('http://194.87.146.152/reg/register', {
         nickname, email, phone_number, password
       });
       

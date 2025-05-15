@@ -20,7 +20,7 @@ export default function ChatWidget({ carId, userId }) {
   const initChat = async () => {
     try {
       // Fetch car data from backend
-      const carResponse = await axios.get(`http://localhost:4000/api/cars/${carId}`);
+      const carResponse = await axios.get(`http://194.87.146.152/api/cars/${carId}`);
       const carData = {
         ...carResponse.data,
         userId
