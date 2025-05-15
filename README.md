@@ -1,5 +1,7 @@
 # AutoLambada - Каталог автомобилей с пробегом с ИИ-помощником
 
+**Сайт доступен по адресу [http://http://194.87.146.152/](http://194.87.146.152)**
+
 **AutoLambada** – это инновационная онлайн-платформа для продажи поддержанных автомобилей, интегрирующая традиционный каталог с интеллектуальным помощником на базе GigaChat. Проект разработан на стеке MERN и предлагает персонализированный подход к выбору автомобиля.
 
 ![Снимок экрана 2025-05-13 в 22 28 04](https://github.com/user-attachments/assets/2d86be76-79a2-42c3-901c-6ead2f0319c7)
@@ -63,40 +65,6 @@
 - MongoDB (требуется VPN)
 - API ключ GigaChat
 
-### Настройка сервера
-В новой консоли:
-1. Установите зависимости:
-```bash
-cd server
-```
-``` bash
-npm install
-```
-2. Создайте .env файл:
-```
-PORT=4000
-DB_LINK=mongodb+srv://user:pass@cluster.mongodb.net/...
-JWT_SECRET=your_jwt_secret
-```
-3. Запустите сервер:
-``` bash
-npm run start:dev
-```
-
-### Настройка клиента
-В новой консоли:
-1. Установите зависимости:
-``` bash
-cd client
-```
-``` bash
-npm install
-```
-2. Для сборки выполните:
-``` bash
-npm run build
-```
-
 ### Настройка ai-сервиса
 В новой консоли:
 1. Создайте виртуальное окружение и активируйте его:
@@ -127,6 +95,39 @@ pip install -r requirements.txt
 uvicorn main:app --reload --port 5001
 ```
 
+### Настройка клиента
+В новой консоли:
+1. Установите зависимости:
+``` bash
+cd client
+```
+``` bash
+npm install
+```
+2. Для сборки выполните:
+``` bash
+npm run build
+```
+
+### Настройка сервера
+В новой консоли:
+1. Установите зависимости:
+```bash
+cd server
+```
+``` bash
+npm install
+```
+2. Создайте .env файл:
+```
+PORT=4000
+DB_LINK=mongodb+srv://user:pass@cluster.mongodb.net/...
+JWT_SECRET=your_jwt_secret
+```
+3. Запустите сервер:
+``` bash
+npm run start:dev
+```
 Сайт доступен локально по адресу [http://localhost:4000/](http://localhost:4000)
 
 # Разработчики
