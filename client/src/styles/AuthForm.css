@@ -143,3 +143,22 @@ body {
 .error-message:last-child {
   margin-bottom: 0;
 }
+
+
+.submit-btn-ra {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(to right, #6e8efb, #a777e3);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submit-btn-ra:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}

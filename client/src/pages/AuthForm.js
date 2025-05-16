@@ -123,7 +123,7 @@ const AuthForm = () => {
 
           <button 
             type="submit" 
-            className="submit-btn"
+            className="submit-btn-ra"
             disabled={isLoading}
           >
             {isLoading ? 'Вход...' : 'Войти в личный кабинет'}
