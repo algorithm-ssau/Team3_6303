@@ -101,7 +101,7 @@ const RegForm = () => {
             />
           </div>
 
-          <button type="submit" className="submit-btn">
+          <button type="submit" className="submit-btn-ra">
             Зарегистрироваться
           </button>
         </form>
