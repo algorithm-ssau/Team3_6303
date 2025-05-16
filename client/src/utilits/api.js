@@ -8,7 +8,8 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   
-  if (userData?.token) {
+  // Добавляем токен только к запросам к API, а не к статическим файлам
+  if (userData?.token && config.url.startsWith('/api')) {
     config.headers.Authorization = `Bearer ${userData.token}`;
   }
 
