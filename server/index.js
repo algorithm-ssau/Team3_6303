@@ -79,5 +79,14 @@ app.get("/profile", (req, res) => {
 });
 
 
+// Обработка динамических маршрутов для автомобилей
+app.get('/car/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+app.get('/car/:carId', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 // Запускаем веб сервер
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
