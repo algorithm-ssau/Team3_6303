@@ -69,7 +69,7 @@ app.get("/adminCarCard", (req, res) => {
 });
 
 // Запрос на добавление новой машины 
-app.get("/addCar", (req, res) => {
+app.get("/add-car", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
 
