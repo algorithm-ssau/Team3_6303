@@ -59,13 +59,6 @@ const HeaderC = () => {
             <Link to="/" className={`nav-link ${activeLink === 'main' ? 'active' : ''}`}>
               Главный листинг
             </Link>
-{/*             
-            {user && (
-              <Link to="/favorites" className={`nav-link ${activeLink === 'favorites' ? 'active' : ''}`}>
-                Избранное <FaHeart className="heart-icon" />
-              </Link>
-            )} */}
-            
             {user?.isAdmin && (
               <Link to="/add-car" className={`nav-link ${activeLink === 'add-car' ? 'active' : ''}`}>
                 Добавить машину
