@@ -41,9 +41,6 @@ app.use('/auth', authRoutes);
 app.use('/protected', protectedRoutes);
 app.use('/favorites', favoritesRoutes);
 app.use('/adminCarCard', AdminCarCard)
-app.use('/auth', authRoutes);
-app.use('/protected', protectedRoutes);
-app.use('/favorites', favoritesRoutes);
 app.use('/add-car', addCarRoutes);
 
 // Дефолт запрос на основную страницу
@@ -72,10 +69,24 @@ app.get("/adminCarCard", (req, res) => {
 });
 
 // Запрос на добавление новой машины 
-app.get("/addCar", (req, res) => {
+app.get("/add-car", (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
 });
 
+// Запрос на страницу профиля
+app.get("/profile", (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'))
+});
+
+
+// Обработка динамических маршрутов для автомобилей
+app.get('/car/:id', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+app.get('/car/:carId', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Запускаем веб сервер
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

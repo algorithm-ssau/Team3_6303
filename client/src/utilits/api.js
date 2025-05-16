@@ -10,6 +10,9 @@ api.interceptors.request.use((config) => {
   
   if (userData?.token) {
     config.headers.Authorization = `Bearer ${userData.token}`;
+    console.log('Токен добавлен в запрос:', config.url); // Для отладки
+  } else {
+    console.warn('Токен отсутствует!'); // Для отладки
   }
 
   return config;

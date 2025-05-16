@@ -12,23 +12,25 @@ const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userResponse = await api.get('/protected/me');
-        setUser(userResponse.data);
-        
-        const carsResponse = await api.get('/favorites');
-        setCars(carsResponse.data);
-      } catch (error) {
-        console.error('Ошибка при загрузке данных:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const [userResponse, carsResponse] = await Promise.all([
+        api.get('/protected/me'),
+        api.get('/favorites')
+      ]);
+      
+      setUser(userResponse.data);
+      setCars(carsResponse.data);
+    } catch (error) {
+      console.error('Ошибка при загрузке данных:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
-  }, []);
+  fetchData();
+}, []);
 
   const handleToggleFavorite = async (carId) => {
     try {

@@ -9,7 +9,11 @@ const router = express.Router();
 export const authenticate = async (req, res, next) => {
   try {
     const token = (req.headers.authorization || '').replace('Bearer ', '');
-    console.log('Received token:', token);
+    
+    // Убрать console.log токена в продакшене
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Received token:', token.slice(0, 10) + '...'); // Логируем только начало токена
+    }
 
     if (!token) {
       return res.status(403).json({ message: 'Требуется авторизация' });
