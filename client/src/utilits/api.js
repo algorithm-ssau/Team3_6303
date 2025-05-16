@@ -8,9 +8,11 @@ const api = axios.create({
 api.interceptors.request.use((config) => {
   const userData = JSON.parse(localStorage.getItem('userData'));
   
-  // Добавляем токен только к запросам к API, а не к статическим файлам
-  if (userData?.token && config.url.startsWith('/api')) {
+  if (userData?.token) {
     config.headers.Authorization = `Bearer ${userData.token}`;
+    console.log('Токен добавлен в запрос:', config.url); // Для отладки
+  } else {
+    console.warn('Токен отсутствует!'); // Для отладки
   }
 
   return config;
